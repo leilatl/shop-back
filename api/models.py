@@ -25,6 +25,7 @@ class Product(models.Model):
     count = models.IntegerField()
     category = models.ForeignKey(Category, blank=True, null=True, on_delete=models.CASCADE)
 
+
     def to_json(self):
         return {
             'id': self.id,
