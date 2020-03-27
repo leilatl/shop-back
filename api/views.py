@@ -38,8 +38,9 @@ def category_detail(request, id):
 
 def products_by_category(request, id):
     try:
-        products = Product.objects.get(category = id)
+        category = Category.objects.get(id=id)
+        products = category.product_set.all()
         products_json = [product.to_json() for product in products]
         return JsonResponse(products_json, safe=False)
     except:
-        return JsonResponse({ "error": "No products found in the DB..." })
+        return JsonResponse({"message": "no products"})
